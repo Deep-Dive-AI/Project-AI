@@ -1,6 +1,7 @@
 ## User Story 1
 
 **Als** student wil ik een scrumboard
+
 **zodat** alle teamleden weten wat er moet gebeuren en taken kunnen worden verdeeld
 
 ----------------------------------------------------------------------------------------
@@ -49,6 +50,7 @@
 ## User Story 8
 
 **Als** gebruiker/admin wil ik promts editen of verwijderen als het niet klopt,
+
 **zodat** het niet meer kan gebruikt kan worden.
 
 ----------------------------------------------------------------------------------------
@@ -56,6 +58,7 @@
 ## User Story 9
 
 **Als** gebruiker wil ik kunnen inloggen,
+
 **zodat** ik reviews kan doen en mijn prompts kan toevoegen.
 
 ----------------------------------------------------------------------------------------
