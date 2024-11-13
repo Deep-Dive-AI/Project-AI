@@ -1,6 +1,5 @@
 const express = require('express');
 const mysql = require('mysql2');
-const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
@@ -22,33 +21,31 @@ db.connect((err) => {
   console.log('Verbonden met de MySQL database');
 });
 
-app.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
-
-  db.query('SELECT * FROM users WHERE username = ? OR email = ?', [username, email], async (err, results) => {
-    if (err) throw err;
-    if (results.length > 0) {
-      const existingUser = results.filter(user => user.username === username).length > 0;
-      const existingEmails = results.filter(user => user.email === email).length > 0;
-
-      if (existingUser) {
-        return res.status(400).json({ message: 'Gebruikersnaam bestaat al!' });
-      }
-      if (existingEmails) {
-        return res.status(400).json({ message: 'E-mailadres is al in gebruik!' });
-      }
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', 
-             [username, email, hashedPassword], 
-             (err, results) => {
+app.post('/register', (req, res) => {
+    const { username, email, password } = req.body;
+  
+    db.query('SELECT * FROM users WHERE username = ? OR email = ?', [username, email], (err, results) => {
       if (err) throw err;
-      res.status(201).json({ message: 'Registratie succesvol!' });
+      if (results.length > 0) {
+        const existingUser  = results.filter(user => user.username === username).length > 0;
+        const existingEmails = results.filter(user => user.email === email).length > 0;
+  
+        if (existingUser ) {
+          return res.status(400).json({ message: 'Gebruikersnaam bestaat al!' });
+        }
+        if (existingEmails) {
+          return res.status(400).json({ message: 'E-mailadres is al in gebruik!' });
+        }
+      }
+
+      db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', 
+               [username, email, password],
+               (err, results) => {
+        if (err) throw err;
+        res.status(201).json({ message: 'Registratie succesvol!' });
+      });
     });
   });
-});
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
@@ -60,7 +57,7 @@ app.post('/login', (req, res) => {
     }
 
     const user = results[0];
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = password === user.password;
 
     if (isMatch) {
       res.json({ message: 'Inloggen succesvol!' });
@@ -68,6 +65,21 @@ app.post('/login', (req, res) => {
       res.status(400).json({ message: 'Gebruikersnaam of wachtwoord is onjuist!' });
     }
   });
+});
+
+app.post('/forgot-password', (req, res) => {
+    const { email } = req.body;
+
+    db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
+        if (err) throw err;
+        if (results.length === 0) {
+            return res.status(400).json({ message: 'E-mailadres niet gevonden!' });
+        }
+
+        const user = results[0];
+        res.json({ message: `Je wachtwoord is: \n ${user.password}` });
+        res.json({ message: `${user.password}` });
+    });
 });
 
 app.listen(PORT, () => {

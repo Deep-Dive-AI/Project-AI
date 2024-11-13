@@ -47,13 +47,14 @@
       </form>
       
       <form id="forgotPasswordForm" class="form" onsubmit="handleForgotPassword(event)">
-        <h2>Wachtwoord Herstellen</h2>
-        <p>Vul je e-mailadres in om een wachtwoord herstelverzoek te ontvangen.</p>
+        <h2>Wachtwoord achterhaler</h2>
+        <p>Vul je e-mailadres in om je wachtwoord te zien.</p>
         <div class="input-group">
           <label for="forgotEmail">Email</label>
           <input type="email" id="forgotEmail" required>
         </div>
-        <button type="submit" class="submit-btn">Herstel Wachtwoord</button>
+        <h1 id="message"></h1>
+        <button type="submit" class="submit-btn">Wachtwoord zien</button>
         <p class="back-to-login" onclick="showLogin()">Terug naar Inloggen</p>
       </form>
     </div>

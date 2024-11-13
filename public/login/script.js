@@ -96,10 +96,10 @@ async function handleRegister(event) {
         if (!response.ok) {
             throw new Error(result.message);
         }
-        
-        alert(result.message);
+
+        document.getElementById("message").innerText = result.message;
     } catch (error) {
         console.error("Fout bij wachtwoordherstel:", error);
-        alert(error.message);
+        document.getElementById("message").innerText = error.message;
     }
 }
