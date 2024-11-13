@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inloggen & Registreren</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <div class="toggle-forms">
+        <button id="loginBtn" class="active">Inloggen</button>
+        <button id="registerBtn">Registreren</button>
+      </div>
+      
+      <form id="loginForm" class="form active" onsubmit="handleLogin(event)">
+        <h2>Inloggen</h2>
+     <div class="input-group">
+          <label for="loginEmail">Gebruikersnaam</label>
+          <input type="text" id="loginEmail" required>
+        </div>
+        <div class="input-group">
+          <label for="loginPassword">Wachtwoord</label>
+          <input type="password" id="loginPassword" required>
+        </div>
+        <button type="submit" class="submit-btn">Inloggen</button>
+        <p class="forgot-password" onclick="showForgotPassword()">Wachtwoord vergeten?</p>
+      </form>
+      
+      <form id="registerForm" class="form" onsubmit="handleRegister(event)">
+        <h2>Registreren</h2>
+        <div class="input-group">
+          <label for="registerUsername">Gebruikersnaam</label>
+          <input type="text" id="registerUsername" required>
+        </div>
+        <div class="input-group">
+          <label for="registerEmail">Email</label>
+          <input type="email" id="registerEmail" required>
+        </div>
+        <div class="input-group">
+          <label for="registerPassword">Wachtwoord</label>
+          <input type="password" id="registerPassword" required>
+        </div>
+        <button type="submit" class="submit-btn">Registreren</button>
+      </form>
+      
+      <form id="forgotPasswordForm" class="form" onsubmit="handleForgotPassword(event)">
+        <h2>Wachtwoord Herstellen</h2>
+        <p>Vul je e-mailadres in om een wachtwoord herstelverzoek te ontvangen.</p>
+        <div class="input-group">
+          <label for="forgotEmail">Email</label>
+          <input type="email" id="forgotEmail" required>
+        </div>
+        <button type="submit" class="submit-btn">Herstel Wachtwoord</button>
+        <p class="back-to-login" onclick="showLogin()">Terug naar Inloggen</p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
