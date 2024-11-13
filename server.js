@@ -25,10 +25,18 @@ db.connect((err) => {
 app.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
 
-  db.query('SELECT * FROM users WHERE username = ?', [username], async (err, results) => {
+  db.query('SELECT * FROM users WHERE username = ? OR email = ?', [username, email], async (err, results) => {
     if (err) throw err;
     if (results.length > 0) {
-      return res.status(400).json({ message: 'Gebruikersnaam bestaat al!' });
+      const existingUser = results.filter(user => user.username === username).length > 0;
+      const existingEmails = results.filter(user => user.email === email).length > 0;
+
+      if (existingUser) {
+        return res.status(400).json({ message: 'Gebruikersnaam bestaat al!' });
+      }
+      if (existingEmails) {
+        return res.status(400).json({ message: 'E-mailadres is al in gebruik!' });
+      }
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
