@@ -1,0 +1,199 @@
+// Variables
+$primary: #2a9d8f;
+$secondary: #e76f51;
+$dark: #264653;
+$light: #f4f1de;
+$accent: #f4a261;
+$gradient: linear-gradient(135deg, $primary 0%, $dark 100%);
+
+// Styles
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: $gradient;
+  color: $dark;
+  margin: 0;
+  padding: 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+h1 {
+  text-align: center;
+  color: $primary;
+  margin-bottom: 2rem;
+  font-size: 2.8rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  animation: floatTitle 3s ease-in-out infinite;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 4px;
+    background: $gradient;
+    border-radius: 2px;
+    animation: expandLine 3s ease-in-out infinite;
+  }
+}
+
+@keyframes floatTitle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes expandLine {
+  0%, 100% { width: 150px; }
+  50% { width: 200px; }
+}
+
+.category-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+  transform-style: preserve-3d;
+}
+
+.category-btn {
+  background: $gradient;
+  color: white;
+  border: none;
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &:hover {
+    transform: translateY(-5px) scale(1.02) rotateX(5deg);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+}
+
+.prompt-container {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(42,157,143,0.1), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+  }
+
+  &:hover::before {
+    transform: translateX(100%);
+  }
+}
+
+.prompt-text {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: $dark;
+  transition: all 0.3s ease;
+}
+
+.copy-btn {
+  background: $secondary;
+  color: white;
+  border: none;
+  padding: 1rem 1.8rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 15px rgba($secondary, 0.3);
+  }
+}
+
+.copied-message {
+  color: $primary;
+  font-size: 1.1rem;
+  margin-left: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-weight: 600;
+  position: relative;
+
+  &.show {
+    opacity: 1;
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
