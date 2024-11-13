@@ -42,7 +42,7 @@ app.post('/register', async (req, res) => {
   });
 });
 
-app.post('/login/login.html', (req, res) => {
+app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
   db.query('SELECT * FROM users WHERE username = ?', [username], async (err, results) => {

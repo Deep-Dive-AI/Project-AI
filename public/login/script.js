@@ -91,13 +91,3 @@ async function handleRegister(event) {
       console.error("Fout bij wachtwoordherstel:", error);
     }
   }
-  
-  function showForgotPassword() {
-    document.getElementById("loginForm").classList.remove("active");
-    document.getElementById("forgotPasswordForm").classList.add("active");
-  }
-  
-  function showLogin() {
-    document.getElementById("forgotPasswordForm").classList.remove("active");
-    document.getElementById("loginForm").classList.add("active");
-  }
