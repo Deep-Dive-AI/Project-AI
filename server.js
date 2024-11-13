@@ -77,8 +77,7 @@ app.post('/forgot-password', (req, res) => {
         }
 
         const user = results[0];
-        res.json({ message: `Je wachtwoord is: \n ${user.password}` });
-        res.json({ message: `${user.password}` });
+        res.json({ message: `Je wachtwoord is:\n${user.password}` });
     });
 });
 
