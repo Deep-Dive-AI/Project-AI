@@ -1,4 +1,3 @@
-// Schakelen tussen de inlog- en registratieformulieren
 const loginBtn = document.getElementById("loginBtn");
 const registerBtn = document.getElementById("registerBtn");
 const loginForm = document.getElementById("loginForm");
@@ -17,7 +16,6 @@ registerBtn.addEventListener("click", () => {
   loginBtn.classList.remove("active");
 });
 
-// Functie om inlogformulier weer te geven
 function showLogin() {
   loginForm.classList.add("active");
   registerForm.classList.remove("active");
@@ -26,7 +24,6 @@ function showLogin() {
   registerBtn.classList.remove("active");
 }
 
-// Functie om wachtwoord vergeten formulier weer te geven
 function showForgotPassword() {
   forgotPasswordForm.classList.add("active");
   loginForm.classList.remove("active");
@@ -35,7 +32,6 @@ function showForgotPassword() {
   registerBtn.classList.remove("active");
 }
 
-// Inloggen functie
 function handleLogin(event) {
   event.preventDefault();
   const email = document.getElementById("loginEmail").value;
@@ -48,7 +44,6 @@ function handleLogin(event) {
   }
 }
 
-// Registreren functie
 function handleRegister(event) {
   event.preventDefault();
   const username = document.getElementById("registerUsername").value;
@@ -62,7 +57,6 @@ function handleRegister(event) {
   }
 }
 
-// Wachtwoord vergeten functie
 function handleForgotPassword(event) {
   event.preventDefault();
   const email = document.getElementById("forgotEmail").value;
