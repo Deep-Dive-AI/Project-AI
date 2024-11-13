@@ -73,21 +73,33 @@ async function handleRegister(event) {
     }
   }
   
-  async function handleForgotPassword(event) {
+  async function handleForgotPassword(event) { 
     event.preventDefault();
     const email = document.getElementById("forgotEmail").value;
-  
-    try {
-      const response = await fetch('http://localhost:3000/forgot-password', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email })
-      });
-      const result = await response.json();
-      alert(result.message);
-    } catch (error) {
-      console.error("Fout bij wachtwoordherstel:", error);
+
+    if (!email) {
+        alert("Vul een e-mailadres in.");
+        return;
     }
-  }
+
+    try {
+        const response = await fetch('http://localhost:3000/forgot-password', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+        });
+        
+        const result = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(result.message);
+        }
+        
+        alert(result.message);
+    } catch (error) {
+        console.error("Fout bij wachtwoordherstel:", error);
+        alert(error.message);
+    }
+}
