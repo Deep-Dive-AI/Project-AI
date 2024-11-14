@@ -71,7 +71,9 @@ async function handleRegister(event) {
       });
       const result = await response.json();
       alert(result.message);
-      window.location.href = "http://localhost:5173/";
+      if (result.message == 'Inloggen succesvol!') {
+        window.location.href = "http://localhost:5173/";
+    }
     } catch (error) {
       console.error("Fout bij inloggen:", error);
     }
