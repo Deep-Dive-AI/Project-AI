@@ -47,10 +47,12 @@ async function handleRegister(event) {
         body: JSON.stringify({ username, email, password })
       });
       const result = await response.json();
-      alert(result.message);
       if (result.message == 'Registratie succesvol!') {
+        console.log(result.message == 'Registratie succesvol!');
         window.location.href = "http://localhost:3000/login/login.html";
-    }
+    } else if (result.message == 'Gebruikersnaam bestaat al!' || result.message == 'E-mailadres is al in gebruik!') {
+        alert(result.message);
+        }
     } catch (error) {
       console.error("Fout bij registratie:", error);
     }
@@ -70,9 +72,11 @@ async function handleRegister(event) {
         body: JSON.stringify({ username, password })
       });
       const result = await response.json();
-      alert(result.message);
       if (result.message == 'Inloggen succesvol!') {
+        console.log(result.message == 'Inloggen succesvol!');
         window.location.href = "http://localhost:5173/";
+    } else if (result.message == 'Gebruikersnaam of wachtwoord is onjuist!') {
+        alert(result.message);
     }
     } catch (error) {
       console.error("Fout bij inloggen:", error);
