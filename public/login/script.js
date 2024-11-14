@@ -48,6 +48,9 @@ async function handleRegister(event) {
       });
       const result = await response.json();
       alert(result.message);
+      if (result.message == 'Registratie succesvol!') {
+        window.location.href = "http://localhost:3000/login/login.html";
+    }
     } catch (error) {
       console.error("Fout bij registratie:", error);
     }
@@ -68,6 +71,7 @@ async function handleRegister(event) {
       });
       const result = await response.json();
       alert(result.message);
+      window.location.href = "http://localhost:5173/";
     } catch (error) {
       console.error("Fout bij inloggen:", error);
     }
