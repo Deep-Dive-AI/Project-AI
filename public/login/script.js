@@ -70,8 +70,10 @@ async function handleRegister(event) {
         body: JSON.stringify({ username, password })
       });
       const result = await response.json();
-      console.log(result.message);
-      window.location.href = "http://localhost:5173/";
+      alert(result.message);
+      if (result.message == 'Inloggen succesvol!') {
+        window.location.href = "http://localhost:5173/";
+    }
     } catch (error) {
       console.error("Fout bij inloggen:", error);
     }
