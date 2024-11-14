@@ -67,7 +67,7 @@ async function handleRegister(event) {
         body: JSON.stringify({ username, password })
       });
       const result = await response.json();
-      alert(result.message);
+      console(result.message);
     } catch (error) {
       console.error("Fout bij inloggen:", error);
     }
