@@ -1,29 +1,33 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://unpkg.com/normalize.css">
     <title>Vite App</title>
-  </head>
-  <body>
+</head>
+
+<body>
+    <button class="category-btn" onclick="window.location.href='http://localhost:3000/login/login.html'">Login</button>
     <div class="container">
-      <h1>✨ ChatGPT Prompt Generator Pro Plus</h1>
-      
-      <div class="category-buttons">
-        <button class="category-btn" data-category="writing">Writing</button>
-        <button class="category-btn" data-category="coding">Coding</button>
-        <button class="category-btn" data-category="business">Business</button>
-        <button class="category-btn" data-category="creative">Creative</button>
-        <button class="category-btn" data-category="academic">Academic</button>
-      </div>
-      
-      <div class="prompt-container">
-        <p class="prompt-text">Select a category to discover amazing prompt suggestions...</p>
-        <button class="copy-btn">Copy Prompt</button>
-        <span class="copied-message">✨ Prompt copied to clipboard!</span>
-      </div>
+        <h1>✨ ChatGPT Prompt Generator Pro Plus</h1>
+
+        <div class="category-buttons">
+            <button class="category-btn" data-category="writing">Writing</button>
+            <button class="category-btn" data-category="coding">Coding</button>
+            <button class="category-btn" data-category="business">Business</button>
+            <button class="category-btn" data-category="creative">Creative</button>
+            <button class="category-btn" data-category="academic">Academic</button>
+        </div>
+
+        <div class="prompt-container">
+            <p class="prompt-text">Select a category to discover amazing prompt suggestions...</p>
+            <button class="copy-btn">Copy Prompt</button>
+            <span class="copied-message">✨ Prompt copied to clipboard!</span>
+        </div>
     </div>
     <script type="module" src="/main.js"></script>
-  </body>
+</body>
+
 </html>
